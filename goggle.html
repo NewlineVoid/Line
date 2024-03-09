@@ -1,11 +1,275 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>goggle</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>goggle</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
+  
 <body>
+  <ul class="topnav">
+		<li>
+			<a href="https://www.youtube.com/watch?v=BKCPCHLCTJU" id="goodgamemail">GGmail</a></li>
+		<li>
+			<a href="https://www.youtube.com/watch?v=BKCPCHLCTJU" id="imagaines">Imagines</a></li>
+		<li>
+			<a href="https://www.youtube.com/watch?v=BKCPCHLCTJU" id="more">
+				<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+width="20" height="20"
+viewBox="0,0,256,256"
+style="fill:#000000;">
+<g fill-opacity="0" fill="#dddddd" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,256v-256h256v256z" id="bgRectangle"></path></g><g fill="#ffffff" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(4,4)"><path d="M7,29v5l50,1v-7zM7,11v6h50v-6zM7,46v7l50,-1v-5z"></path></g></g>
+</svg>
+			</a></li>
+		<li>
+			<a href="https://www.youtube.com/watch?v=BKCPCHLCTJU">
+				<object data="logouser.svg" width="30" height="30"> </object>
+			</a></li>
+	</ul>
+  <div id="void"><h1>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</h1></div>
+
+	<div id="gogle"><h1 id="header">goggle</h1><div><input type="text" id="search" name="search" autocomplete="off" placeholder="search"></div>
     
+    <div class="urlmode">
+    <input type="text" id="medium" name="medium" placeholder="method"></input><p class="tempdis" id="tempdis">mediums include: "url", "search", "x", "twitter", "twitter.user", "roblox.user", "roblox", "roblox.group", "roblox.catalog", "twitch", "twitch.user", "youtube", "youtube.user", "reddit", "reddit.community", "reddit.user"</p>
+    </div>
+      <div><input type="submit" value="submit" class="submit" onclick="GoogleThis()" id="submit"></div></div>
+
+</div>
 </body>
+
 </html>
+<style>
+*{
+  text-align:center;
+  transition:0.75s ease-in;
+}
+html, body {
+  height: 100%;
+  width: 100%;
+  padding:0px;
+  margin:0px;
+}
+body{
+	background-color: #353535;
+  color:white;
+  font-family: sans-serif;
+  text-align: center;
+  overflow: hidden;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width:fit-content;
+  height:fit-content;
+  float:right;
+  right:10px;
+}
+li{
+  display:inline;
+  float: left;
+  right:10px;
+}
+a {
+  display: block;
+  padding: 8px;
+  text-decoration: none;
+  color:white;
+}
+#empty{
+  color: #353535;
+  opacity: 0;
+  visibility:hidden;
+}
+#gogle>h1:hover{
+  animation: hover 2s infinite alternate;
+  background: rgba(0, 0, 0, 0);
+  font-size:5.25rem;
+  rotate: -5deg;
+}
+@keyframes hover {
+  0% {color: rgb(255, 255, 255); text-shadow:0 0 10px #ffffff;}
+  25% {color: rgb(255, 0, 0); text-shadow:0 0 10px #ff7474;}
+  50% {color: rgb(0, 255, 0); text-shadow:0 0 10px #74ff74;}
+  75%{ color: rgb(0, 0, 255); text-shadow:0 0 10px #7474ff;}
+  100% {color:rgb(0,0,0); text-shadow:0 0 10px #747474;}
+}
+#gogle{
+  font-weight: 400px;
+  font-size: 2rem;
+  transition: ease-in;
+}
+#search{
+  border-style:solid;
+  border-radius: 29px;
+  border-color: white;
+  background-color: white;
+  width:30rem;
+  height:2rem;
+  font-size:1.5rem;
+}
+#medium{
+  border-style:solid;
+  border-radius: 29px;
+  border-color: white;
+  background-color: white;
+  width:15rem;
+  height:1.5rem;
+  font-size:1rem;
+}
+
+.submit{
+  font-size:1rem;
+  background-color: #353535;
+  text-decoration: none;
+  border-radius: 20px;
+  border-color: white;
+  color:white;
+  transition:0.25s ease-in;
+}
+.submit:hover{
+  border-color:#000000;
+}
+#url2{
+  font-size: 1rem;
+}
+.urlmode{
+  margin: 1rem;
+}
+.tempdis{
+  font-size:0.75rem;
+  transition: 0.75s ease-in-out;
+}
+</style>
+  <script>
+  function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+  
+console.log('"url", "search", "x", "twitter", "twitter.user", "roblox.user", "roblox", "roblox.group", "roblox.catalog", "twitch", "twitch.user", "youtube", "youtube.user", "reddit", "reddit.community", "reddit.user"')
+
+function goToUrl(url) {
+  sleep(0).then(() => { document.getElementById('goodgamemail').style.opacity = "0" });
+  document.getElementById('tempdis').style.transitionDuration = "0.75s ease-in";
+  sleep(50).then(() => { document.getElementById('tempdis').style.opacity = "0" });
+  sleep(100).then(() => { document.getElementById('imagaines').style.opacity = "0" });
+  sleep(150).then(() => { document.getElementById('submit').style.opacity = "0" });
+  sleep(200).then(() => { document.getElementById('more').style.opacity = "0" });
+
+  sleep(500).then(() => { document.getElementById('search').style.opacity = "0" });
+  sleep(650).then(() => { document.getElementById('medium').style.opacity = "0" });
+  sleep(650).then(() => { document.body.style.background = "black" });
+
+  sleep(700).then(() => { document.getElementById('header').style.opacity = "0" });
+  sleep(1500).then(() => { document.body.style.background = "white" });
+  sleep(1750).then(() => { document.getElementById('header').style.opacity = "1" });
+  sleep(1750).then(() => { document.getElementById('header').style.color = "Black" });
+  sleep(1550).then(() => { document.getElementById('header').style.fontSize = "10rem" });
+  sleep(1600).then(() => { document.getElementById('tempdis').style.opacity = "1" });
+  sleep(1000).then(() => { document.getElementById('tempdis').style.color = "Black" });
+  sleep(1450).then(() => { document.getElementById('tempdis').innerHTML = `you are being redirected to: <br><b><i>${url}</i></b>` });
+  sleep(6750).then(() => { document.getElementById('tempdis').innerHTML = `redirecting in 3` });
+  sleep(7750).then(() => { document.getElementById('tempdis').innerHTML = `redirecting in 2` });
+  sleep(8750).then(() => { document.getElementById('tempdis').innerHTML = `redirecting in 1` });
+  sleep(8750).then(() => { document.getElementById('tempdis').innerHTML = `redirecting` });
+  sleep(8800).then(() => { document.getElementById('tempdis').innerHTML = `redirecting.` });
+  sleep(8850).then(() => { document.getElementById('tempdis').innerHTML = `redirecting..` });
+  sleep(8900).then(() => { document.getElementById('tempdis').innerHTML = `redirecting...` });
+  sleep(9050).then(() => { document.getElementById('tempdis').innerHTML = `redirected` });
+
+  sleep(9000).then(() => { window.location.assign(url); });
+}
+
+function GoogleThis() {
+  console.log('searching')
+  const searchbar = document.getElementById('search')
+  const medium = document.getElementById("medium")
+  let url;
+  //getting search value
+  switch (medium.value) {
+    case "url":
+      url = `https://${searchbar.value.replace(' ', "")}.com`;
+      goToUrl(url)
+      break;
+    case "search":
+      url = `https://www.google.com/search?q=${searchbar.value.replace(" ", "+")}`;
+      goToUrl(url)
+      break;
+    case "x":
+      url = `https://x.com/search?q=${searchbar.value.replace(' ', '%20')}&src=typed_query`;
+      goToUrl(url)
+      break;
+    case "twitter":
+      url = `https://twitter.com/search?q=${searchbar.value.replace(' ', '%20')}&src=typed_query`;
+      goToUrl(url)
+      break;
+    case "twitter.user":
+      url = `https://x.com/${searchbar.value.replace(' ', '')}`;
+      goToUrl(url)
+      break;
+    case "roblox.user":
+      url = `https://www.roblox.com/search/users?keyword=${searchbar.value.replace(' ', '%20')}`;
+      goToUrl(url)
+      break;
+    case "roblox":
+      url = `https://www.roblox.com/discover/?Keyword=${searchbar.value.replace(' ', '%20')}`;
+      goToUrl(url)
+      break;
+    case "roblox.group":
+      url = `https://www.roblox.com/search/groups?keyword=${searchbar.value.replace(' ', '%20')}`;
+      goToUrl(url)
+      break;
+    case "roblox.catalog":
+      url = `https://www.roblox.com/catalog?Keyword=${searchbar.value.replace(' ', '%20')}`;
+      goToUrl(url)
+      break;
+    case "twitch":
+      url = `https://www.twitch.tv/search?term=${searchbar.value.replace(' ', '%20')}`;
+      goToUrl(url)
+      break;
+    case "twitch.user":
+      url = `https://www.twitch.tv/${searchbar.value.replace(' ', '')}`;
+      goToUrl(url)
+      break;
+    case "youtube":
+      url = `https://www.youtube.com/results?search_query=${searchbar.value.replace(' ', '+')}`;
+      goToUrl(url)
+      break;
+    case "youtube.user":
+      url = `https://www.youtube.com/results?search_query=${searchbar.value.replace(' ', '+')}&sp=EgIQAg%253D%253D`;
+      goToUrl(url)
+      break;
+    case "reddit":
+      url = `https://www.reddit.com/search/?q=${searchbar.value.replace(' ', '+')}`;
+      goToUrl(url)
+      break;
+    case "reddit.community":
+      url = `https://www.reddit.com/search/?q=${searchbar.value.replace(' ', '+')}&type=sr`;
+      goToUrl(url)
+      break;
+    case "reddit.user":
+      url = `https://www.reddit.com/search/?q=${searchbar.value.replace(' ', '+')}&type=user`;
+      goToUrl(url)
+      break;
+    default:
+      url = `https://www.google.com/search?q=${searchbar.value.replace(" ", "+")}`;
+      goToUrl(url)
+      break;
+  }
+}
+
+document.addEventListener("keydown", (event) => {
+  const keyDown = event.key
+  if (keyDown == "Enter") {
+    GoogleThis()
+  }
+})
+
+window.onload = function() {
+  sleep(2500).then(() => {document.getElementById('tempdis').style.opacity = "0"});
+}
+
+  </script>
