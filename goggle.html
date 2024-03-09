@@ -197,15 +197,15 @@ function GoogleThis() {
       goToUrl(url)
       break;
     case "search":
-      url = `https://www.google.com/search?q=${searchbar.value.replace(" ", "+")}`;
+      url = `https://www.google.com/search?q=${encodeURIComponent(searchbar.value)}`;
       goToUrl(url)
       break;
     case "x":
-      url = `https://x.com/search?q=${searchbar.value.replace(' ', '%20')}&src=typed_query`;
+      url = `https://x.com/search?q=${encodeURIComponent(searchbar.value)}&src=typed_query`;
       goToUrl(url)
       break;
     case "twitter":
-      url = `https://twitter.com/search?q=${searchbar.value.replace(' ', '%20')}&src=typed_query`;
+      url = `https://twitter.com/search?q=${encodeURIComponent(searchbar.value)}&src=typed_query`;
       goToUrl(url)
       break;
     case "twitter.user":
@@ -213,23 +213,23 @@ function GoogleThis() {
       goToUrl(url)
       break;
     case "roblox.user":
-      url = `https://www.roblox.com/search/users?keyword=${searchbar.value.replace(' ', '%20')}`;
+      url = `https://www.roblox.com/search/users?keyword=${encodeURIComponent(searchbar.value)}`;
       goToUrl(url)
       break;
     case "roblox":
-      url = `https://www.roblox.com/discover/?Keyword=${searchbar.value.replace(' ', '%20')}`;
+      url = `https://www.roblox.com/discover/?Keyword=${encodeURIComponent(searchbar.value)}`;
       goToUrl(url)
       break;
     case "roblox.group":
-      url = `https://www.roblox.com/search/groups?keyword=${searchbar.value.replace(' ', '%20')}`;
+      url = `https://www.roblox.com/search/groups?keyword=${encodeURIComponent(searchbar.value)}`;
       goToUrl(url)
       break;
     case "roblox.catalog":
-      url = `https://www.roblox.com/catalog?Keyword=${searchbar.value.replace(' ', '%20')}`;
+      url = `https://www.roblox.com/catalog?Keyword=${encodeURIComponent(searchbar.value)}`;
       goToUrl(url)
       break;
     case "twitch":
-      url = `https://www.twitch.tv/search?term=${searchbar.value.replace(' ', '%20')}`;
+      url = `https://www.twitch.tv/search?term=${encodeURIComponent(searchbar.value)}`;
       goToUrl(url)
       break;
     case "twitch.user":
@@ -237,27 +237,27 @@ function GoogleThis() {
       goToUrl(url)
       break;
     case "youtube":
-      url = `https://www.youtube.com/results?search_query=${searchbar.value.replace(' ', '+')}`;
+      url = `https://www.youtube.com/results?search_query=${encodeURIComponent(searchbar.value)}`;
       goToUrl(url)
       break;
     case "youtube.user":
-      url = `https://www.youtube.com/results?search_query=${searchbar.value.replace(' ', '+')}&sp=EgIQAg%253D%253D`;
+      url = `https://www.youtube.com/results?search_query=${encodeURIComponent(searchbar.value))}&sp=EgIQAg%253D%253D`;
       goToUrl(url)
       break;
     case "reddit":
-      url = `https://www.reddit.com/search/?q=${searchbar.value.replace(' ', '+')}`;
+      url = `https://www.reddit.com/search/?q=${encodeURIComponent(searchbar.value)}`;
       goToUrl(url)
       break;
     case "reddit.community":
-      url = `https://www.reddit.com/search/?q=${searchbar.value.replace(' ', '+')}&type=sr`;
+      url = `https://www.reddit.com/search/?q=${encodeURIComponent(searchbar.value))}&type=sr`;
       goToUrl(url)
       break;
     case "reddit.user":
-      url = `https://www.reddit.com/search/?q=${searchbar.value.replace(' ', '+')}&type=user`;
+      url = `https://www.reddit.com/search/?q=${encodeURIComponent(searchbar.value)}&type=user`;
       goToUrl(url)
       break;
     default:
-      url = `https://www.google.com/search?q=${searchbar.value.replace(" ", "+")}`;
+      url = `https://www.google.com/search?q=${encodeURIComponent(searchbar.value)}`;
       goToUrl(url)
       break;
   }
