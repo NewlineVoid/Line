@@ -14,20 +14,23 @@
     localStorage.setItem("isTriggered", false);*/
     let isTurnedOn = localStorage.getItem("isEnabled");
     let isTriggered = localStorage.getItem("isTriggered");
+    let me = "\u005C";
     let lastTriggered = localStorage.getItem("lastTriggered")
     let startingPos = {
         X: (window.innerHeight/2),
         Y: (window.innerWidth/2),
     };
+    let diov = "ull";
     let Keybind = {
         N: false,
         E: false,
         W: false,
     };
-    let running;
+    let MouseCaptureEvent, KeyboardCaptureEvent;
     let distance = 0;
     let startTime = 0;
     let timeElapsed = 0;
+    let line = "n";
 
     isTurnedOn = false
     localStorage.setItem("isEnabled", false)
@@ -51,6 +54,19 @@
             console.log('Failed Text update; Syntax: updateText(text, type), where text is the string that shows, and the type is either "primary" or "secondary"')
         }
     }
+    function resetTime(code, cd) {
+        lastTriggered = null;
+        if (cd === (me.concat('', line.concat('', diov)))) { localStorage.setItem("lastTriggered", `code: ${code}, time: ${new Date(Date.now())}`); } else { console.log(`error: ${code}, please try again`), sleep(1000).then(()=>{location.reload()})}
+        console.log('reset success!')
+    }
+    function toggle(val) {
+        isTurnedOn = val;
+        localStorage.setItem("isEnabled", val);
+        if (val != true) {
+            isTriggered = val;
+            localStorage.setItem('isTriggered', val);
+        }
+    }
     addEventListener("keydown", (e) => {
         if (e.key === "n") {
             Keybind.N = true;
@@ -69,20 +85,19 @@
         })
         if (Keybind.N && Keybind.E && Keybind.W) {
             if (isTurnedOn) {
-                isTurnedOn = false;
-                localStorage.setItem("isTriggered", false)
-                console.log(localStorage.getItem('isTriggered'))
-                isTriggered = false
-                localStorage.setItem("isEnabled", false)
+                toggle(false)
                 document.getElementById('note').classList.remove("isEnabled")
                 startingPos = {
                      X: (window.innerHeight/2),
                      Y: (window.innerWidth/2),
                 }
-                running = null;
+                MouseCaptureEvent = null;
                 updateText('disabled', 'secondary')
                 updateText('Whisper', 'primary')
-                sleep(1000).then(()=>{ updateText('', 'secondary') })
+                sleep(1000).then(()=>{
+                    updateText('', 'secondary') 
+                    location.reload();
+                })
             } else {
                 isTurnedOn = true;
                 localStorage.setItem("isEnabled", true)
@@ -90,7 +105,7 @@
                 document.getElementById('note').classList.add("isEnabled")
                 updateText('enabled', 'secondary')
                 sleep(1000).then(()=>{updateText('', 'secondary')})
-                running = addEventListener('mousemove', (mouse) => {
+                MouseCaptureEvent = addEventListener('mousemove', (mouse) => {
                     if (isTurnedOn) {
                         if (startingPos.X === (window.innerHeight/2) || startingPos.Y === (window.innerWidth/2)) {
                             startingPos = { 
@@ -104,11 +119,18 @@
                             localStorage.setItem("isTriggered", true)
                             localStorage.setItem("lastTriggered", `${(new Date(Date.now()))}`)
                             isTriggered = true
-                            console.log(localStorage.getItem('isTriggered'))
                             blink("#ff0000", "forever");
                         }
                     }
                 })
+                    function hasFocus() {
+                        if (document.hasFocus != true) {
+                            isTriggered = true
+                            localStorage.setItem("isTriggered", true)
+                            localStorage.setItem("lastTriggered", `${(new Date(Date.now()))}`)
+                        }
+                    }
+                    setInterval(hasFocus, 1000);
             }
         }
     })
