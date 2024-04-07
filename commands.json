@@ -1,0 +1,35 @@
+{
+  "commands": [
+    {
+      "name": "help",
+      "aliases": ["h", "cmd"],
+      "description": "Get help on available commands",
+      "examples": ["help", "help <command>"],
+      "args": [],
+      "callback": "this is a test",
+      "permissions": ["user"]
+    },
+    {
+      "name": "list",
+      "aliases": ["ls"],
+      "description": "List files in a directory",
+      "examples": ["list", "list <directory>"],
+      "args": [
+        { "name": "directory", "type": "optional", "valueType": "string" }
+      ],
+      "callback": "function to list files",
+      "permissions": ["user"]
+    },
+    {
+      "name": "read",
+      "aliases": ["cat"],
+      "description": "Read the contents of a file",
+      "examples": ["read <filename>"],
+      "args": [
+        { "name": "filename", "type": "essential", "valueType": "string" }
+      ],
+      "callback": "function to read file contents",
+      "permissions": ["user"]
+    }
+  ]
+}
