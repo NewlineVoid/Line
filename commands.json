@@ -1,6 +1,6 @@
 {
-  "randomNumber": {
-    "name": "randomNumber",
+  "randomnumber": {
+    "name": "randomnumber",
     "aliases": ["random", "number"],
     "contributors": [
       {
