@@ -157,7 +157,11 @@
         setInterval(function() { randomRender(`
             totally not an advertisement for Resewn. Subscribe to Galsical @ youtube
         `, 99.999) }, 10);
-        }
+        };
+        var audio = new Audio(`settings.music.sound`);
+        setInterval(function() {
+            audio.play();
+        }, 47000)
     })
     
     
