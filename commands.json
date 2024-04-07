@@ -20,7 +20,7 @@
       { "name": "max", "type": "essential", "valueType": "int" },
       { "name": "floor", "type": "optional", "valueType": "int" }
     ],
-    "callback": "function(min, max, floor) { let number = Math.random() * (max-min)+min; if (floor) number = Math.floor(number); console.log(number) }",
+    "callback": "function random(min, max, floor) { let number = Math.random() * (max-min)+min; if (floor) number = Math.floor(number); console.log(number) }",
     "permissions": ["admin", "user"]
   }
 }
