@@ -99,6 +99,8 @@
         `) })
     sleep(850).then(()=> { render(`Type 'help' for assistance.
     `) })
+    sleep(900).then(()=> { render(`Note: This is a test version. Bugs and glitches are bound to occur.
+    `, 'n', 'success-disable') })
         sleep(150).then(fade())
         for (let variable in settings.theme) {
             document.body.style.setProperty(variable, settings.theme[variable])
