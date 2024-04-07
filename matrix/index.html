@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matrix</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <style>
+        #fade{
+            position:fixed;
+            top:0;
+            left:0;
+            bottom:0;
+            right:0;
+            background: #000;
+            z-index: 999;
+            opacity:1;
+        }
+        #fade.enabled{
+            opacity:0;
+            transition: 1000ms ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div id="BodyBackground"></div>
+    <div id="fade"></div>
+    <div id="scrolltotop" class="scroll"></div>
+    <div id="container"></div>
+    <div id="scrolltobottom" class="scroll"></div>
+    <div id="consoleBackground"></div><textarea id="consoleInput" rows="1" cols="150" placeholder="c:/"></textarea>
+    <button id="enterConsole" onclick="if (consoleInp.value) submitConsoleInput()"><span class="material-symbols-outlined">input</span></button>
+</body>
+    <script defer>
+    let container = document.getElementById('container')
+    let el;
+    let chance = (100-5);
+    let settings = {
+        username: 'user',
+        APIKeys: {
+            Github: 'none',
+            ApiNinja: 'none',
+        },
+        passiveBinary: false,
+        theme: {
+            '--primary': '#ffffff',
+            '--secondary': '#141414',
+            '--focus': '#ffffff',
+            '--background': '#000',
+            '--success': '#00ab00',
+            '--error': '#ab0000',
+            '--success-disable': '#ff0000',
+            '--success-enable': '#00ff00',
+            '--user': '#c8ffff'
+        },
+        music: {
+            enabled: true, 
+            sound: 'default', //audio file
+            volume: 50
+        },
+        location: '??',
+        autoSave: true,
+        importCommands: []
+    };
+    if (localStorage.getItem('settings')) {
+        settings = JSON.parse(localStorage.getItem('settings'))
+    }
+    let user = settings.username;
+    let passiveBinary = settings.passiveBinary;
+
+    function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
+
+    function fade() {
+        document.getElementById('fade').classList.toggle("enabled");
+        sleep(500).then(() => { document.getElementById('fade').style.transition = "750ms ease-in-out"; })
+        sleep(750).then(() => {
+            if (document.getElementById('fade').style.display != 'none') {
+                document.getElementById('fade').style.display = 'none'
+            } else {
+                document.getElementById('fade').style.display = 'block'
+            }
+        })
+    }
+
+    window.onload = () => {
+        render(`C:/Users/${user}/Documents/Matrix.html
+    `)
+    sleep(150).then(()=> { render(`Initializing Cyberspace Interface...
+        `) })
+    sleep(300).then(()=> { render(`Loading Quantum Code Modules...
+        `) })
+    sleep(500).then(()=> { render(`Decrypting Neural Pathways...
+        `) })
+    sleep(650).then(()=> { render(`Engaging Hyperdrive...
+        `) })
+    sleep(750).then(()=> { render(`Access Granted.
+        `) })
+    sleep(800).then(()=> { render(`Welcome to Matrix Command Center.
+        `) })
+    sleep(850).then(()=> { render(`Type 'help' for assistance.
+    `) })
+        sleep(150).then(fade())
+        for (let variable in settings.theme) {
+            document.body.style.setProperty(variable, settings.theme[variable])
+        }
+    }
+
+    function render(string, type, status) {
+        el = document.createElement('span');
+        el.innerText = `${string}`;
+
+        if (string === '/n') { el.innerText = `
+                `}
+        if (type === 'user') {
+            el.innerText = `c:/Users/${user}> ${string.trim()}`;
+            el.classList.add('user')
+        } else if (type === 'system') {
+            render('/n')
+            el.innerText = `System> ${string}`;
+            el.classList.add('System')
+        } else if (type === 'list') {
+            el.innerText = `
+            ${string}`
+        }
+        if (status) {
+            el.classList.add(`${status}`)
+        }
+        container.appendChild(el);
+    }
+
+    function randomRender(string, chance) {
+        if (passiveBinary) {
+            let chnc = Math.random()*(100-1)+1 //Math.floor(Math.random()*(100-1)+1)
+            if (chnc > chance && chance > 99) {
+                render(string, 'passive', 'jackpot')
+                return
+            }
+            if (chnc > chance) {
+                render(string, 'passive')
+                return
+            }
+        }
+    }
+
+    
+    sleep(1500).then(() => {
+        if (passiveBinary) {
+        setInterval(function() { randomRender('0', chance) }, 1);
+        setInterval(function() { randomRender('1', chance) }, 1);
+        setInterval(function() { randomRender(' ', 97) }, 10);
+        setInterval(function() { randomRender(`
+            totally not an advertisement for Resewn. Subscribe to Galsical @ youtube
+        `, 99.999) }, 10);
+        }
+    })
+    
+    
+    if (settings.autoSave) {
+        setInterval(() => {
+            localStorage.setItem('settings', JSON.stringify(settings))
+        }, 200)
+    }
+
+    let commands = {
+        help: {
+            name: 'help',
+            aliases: ['h', 'cmd', 'c:\\'],
+            contributors: [
+                {name: 'NewlineVOID', role: 'Creator', socials: {twitter:'newlinevoid', discord:'697729838517190686', github:'NewlineVoid'}},
+            ],
+            description: 'provides detailed information for commands, and a list of commands.',
+            examples: ['help clear'],
+            args: [
+            { name: 'cmd', type: 'optional', valueType: 'string' },
+            ],
+            callback: function(cmd) {
+                if (commands[cmd]) {
+                let contributors = [];
+                    commands[cmd].contributors.forEach(c => {
+                        if (c.socials.github) contributors.push(` ${c.name} ( github: @${c.socials.github} ) -- ${c.role}`)
+                        else if (c.socials.site) contributors.push(` ${c.name} ( site: ${c.socials.site} ) -- ${c.role} `)
+                        else if (c.socials.twitter) contributors.push(` ${c.name} ( twitter: @${c.socials.twitter} ) -- ${c.role}`)
+                        else if (c.socials.discord) contributors.push(` ${c.name} ( discordId: ${c.socials.discord} ) -- ${c.role}`)
+                        else contributors.push(` ${c.name} -- ${c.role}`)
+                    });
+                    let arguments = [];
+                    commands[cmd].args.sort((a, b) => {
+                    if (a.type === 'essential' && b.type === 'optional') {
+                            return -1;
+                        } else if (a.type === 'optional' && b.type === 'essential') {
+                            return 1;
+                        } else {
+                            return 0;
+                        }
+                    });
+                    commands[cmd].args.forEach(arg =>{
+                        if (arg.type === 'essential') arguments.push(` <${arg.name}: ${arg.valueType}>`)
+                        else arguments.push(` [${arg.name}: ${arg.valueType}]`)
+                    })
+                    render(`
+                    ${cmd}:
+                    name: ${commands[cmd].name},
+                    aliases: ${commands[cmd].aliases},
+                    contributors: ${contributors},
+                    description: ${commands[cmd].description},
+                    examples: ${commands[cmd].examples},
+                    arguments: ${arguments},
+                    permissions: ${commands[cmd].permissions}
+                    `, 'system', 'success')
+                } else if(cmd) {
+                    render('/n')
+                    render(`'${cmd}' unrecognized command. Run 'help' to view a list of commands`, 'system', 'error')
+                    render('/n')
+                } else {
+                    render('/n')
+                    render(`list of recognized commands:`, 'system', 'success')
+                    for (let key in commands) {
+                        render(`${key}`, 'list', 'success')
+                    }
+                    render('/n')
+                }
+            },
+            permissions: ['admin', 'user'],
+        },
+
+        lorem: {
+            name: 'lorem',
+            aliases: ['lp', 'loremipsum', 'ipsum', 'lipsum'],
+            contributors: [
+                {name: 'NewlineVOID', role: 'Creator', socials: {twitter:'newlinevoid', discord:'697729838517190686', github:'NewlineVoid'}}
+            ],
+            description: 'generates a lorem ipsum',
+            examples: ['lorem 1'],
+            args: [
+            { name: 'para', type: 'essential', valueType: 'int' }
+            ],
+            callback: function(para) {
+                if (settings.APIKeys.ApiNinja == "none") {
+                    render('/n')
+                    render(`Please enter a api-ninjas API Key using 'setKey ApiNinja <key: string>'`, 'system', 'error');
+                    render('/n')
+                }
+                fetch('https://api.api-ninjas.com/v1/loremipsum?paragraphs=' + para, {
+                    method: 'GET',
+                    headers: { 'X-Api-Key': settings.APIKeys.ApiNinja, 'Content-Type': 'application/json' }}).then(response => {
+                    if (!response.ok) {
+                        render('/n')
+                        render('network response was not ok', 'system', 'error');
+                        render('/n')
+                    }
+                    return response.json(); }).then(result => { render('/n'); render(result.text, 'system'); }).catch(error => { console.error('Error:', error); });
+            },
+            permissions: ['admin', 'user']
+        },
+        clear: {
+            name: 'clear',
+            aliases: ['clr'],
+            contributors: [
+                {name: 'NewlineVOID', role: 'Creator', socials: {twitter:'newlinevoid', discord:'697729838517190686', github:'NewlineVoid'}}
+            ],
+            description: 'clears the console',
+            examples: ['clear'],
+            args: [],
+            callback: function() {
+                container.innerHTML = ""
+            },
+            permissions: ['admin', 'user']
+        },
+        passiveBinary: {
+            name: 'passiveBinary',
+            aliases: ['binary', 'passive', 'pb'],
+            contributors: [
+                {name: 'NewlineVOID', role: 'Creator', socials: {twitter:'newlinevoid', discord:'697729838517190686', github:'NewlineVoid'}}
+            ],
+            description: 'toggles the passive binary',
+            examples: ['passiveBinary'],
+            args: [],
+            callback: function() {
+                if (passiveBinary) {
+                    passiveBinary = false
+                    render('/n')
+                    render('disabled passive binary..', 'system', 'success-disable')
+                    render('/n')
+                } else {
+                    passiveBinary = true
+                    render('/n')
+                    render('enabled passive binary..', 'system', 'success-enable')
+                    render('/n')
+                }
+                
+            },
+            permissions: ['admin', 'user']
+        },
+        theme: {
+            name: 'theme',
+            aliases: ['colour', 'color'],
+            contributors: [
+                {name: 'NewlineVOID', role: 'Creator', socials: {twitter:'newlinevoid', discord:'697729838517190686', github:'NewlineVoid'}}
+            ],
+            description: 'changes the colour of a specified variable. CSS-Variables used: --primary,--secondary,--focus,--background,--success,--error,--success-disable,--success-enable,--user, --background-input, --body-background-size, --body-background-pos, --body-background-repeat, --body-background-filter.',
+            examples: ['theme --primary #00ff00'],
+            args: [
+                {name: 'variable', type: 'essential', valueType: 'string'},
+                {name: 'colour', type: 'essential', valueType: 'string'}
+            ],
+            callback: function(variable, colour) {
+                let variables = ['--primary', '--secondary', '--focus', '--background', '--success', '--error', '--success-disable', '--success-enable', '--user', '--background-input', '--body-background-size', '--body-background-pos', '--body-background-repeat', '--body-background-filter']
+                if (variables.includes(variable)) {
+                    render('/n')
+                    render(`changed ${variable} from ${document.body.style.getPropertyValue(variable)} to ${colour}`, 'system', 'success')
+                    render('/n')
+                    settings.theme[variable] = colour
+                    document.body.style.setProperty(variable, colour)
+                }
+                else {
+                    render('/n')
+                    render(`unrecognized variable('${variable}')`, 'system', 'error')
+                    render('/n')
+                    render(`CSS-Variables used: ${variables}`, 'system', 'error')
+                    render('/n')
+                }
+            },
+            permissions: ['admin', 'user']
+        },
+        login: {
+            name: 'login',
+            aliases: ['user', 'username'],
+            contributors: [
+                {name: 'NewlineVOID', role: 'Creator', socials: {twitter:'newlinevoid', discord:'697729838517190686', github:'NewlineVoid'}}
+            ],
+            description: 'changes your username. Can be used to setup permissions.',
+            examples: ['login NewlineVOID'],
+            args: [
+                {name:'username', type:'essential', valueType:'string'}
+            ],
+            callback: function(username) {
+                user = username
+                settings.username = username
+                render('/n')
+                render(`logged in as ${username}`, 'system', 'success')
+                render('/n')
+            },
+            permissions: ['admin', 'user']
+        },
+        save: {
+            name: 'save',
+            aliases: ['savesettings'],
+            contributors: [
+                {name: 'NewlineVOID', role: 'Creator', socials: {twitter:'newlinevoid', discord:'697729838517190686', github:'NewlineVoid'}}
+            ],
+            description: 'saves your settings.',
+            examples: ['save'],
+            args: [],
+            callback: function() {
+                localStorage.setItem('settings', JSON.stringify(settings))
+                render('/n')
+                render(`successfully saved settings`, 'system', 'success')
+                render('/n')
+            },
+            permissions: ['admin', 'user']
+        },
+        echo: {
+            name: 'echo',
+            aliases: ['l'],
+            contributors: [
+                {name: 'NewlineVOID', role: 'Creator', socials: {twitter:'newlinevoid', discord:'697729838517190686', github:'NewlineVoid'}}
+            ],
+            description: 'echoes whatever you say into console',
+            examples: ['echo Hello World'],
+            args: [{name: 'message', type: 'essential', valueType: 'string'}],
+            callback: function(message) {
+                localStorage.setItem('settings', JSON.stringify(settings))
+                render('/n')
+                render(`${message}`, 'system', 'success')
+                render('/n')
+            },
+            permissions: ['admin', 'user']
+        },
+        loadraw: {
+            name: 'loadraw',
+            aliases: ['raw'],
+            contributors: [
+                {name: 'NewlineVOID', role: 'Creator', socials: {twitter:'newlinevoid', discord:'697729838517190686', github:'NewlineVoid'}}
+            ],
+            description: 'Loads raw content from inputted url.',
+            examples: ['loadraw NewlineVoid Line userDeco.css'],
+            args: [
+                {name: 'owner', type: 'essential', valueType: 'string'},
+                {name: 'repo', type: 'essential', valueType: 'string'},
+                {name: 'filePath', type: 'essential', valueType: 'string'},
+            ],
+            callback: function(owner, repo, filePath) {
+
+                const url = `https://api.github.com/repos/${owner}/${repo}/contents/${filePath}`;
+
+                if (settings.APIKeys.Github == "none"){
+                    render('/n')
+                    render(`Please enter a github API Key using 'setKey Github <key: string>'`, 'system', 'error')
+                    render('/n')
+                    return;
+                }
+
+                render('/n')
+                render(`loading content from ${url}`, 'system')
+                render('/n')
+
+                let content;
+                fetch(url, {
+                headers: {
+                    Authorization: `token ${settings.APIKeys.Github}`
+                }
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        render('/n')
+                        render('network response was not ok', 'system', 'error');
+                        render('/n')
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    content = atob(data['content']);
+                    render('/n')
+                    render(`${content}`, 'system', 'success')
+                    render('/n')
+                })
+                .catch(error => {
+                    render('/n')
+                    render(`error: ${error}`, 'system', 'error');
+                    render('/n')
+                });
+
+
+                
+            },
+            permissions: ['admin', 'user']
+        },
+        import: {
+            name: 'import',
+            aliases: ['importCommands', 'loadCommands'],
+            contributors: [
+                {name: 'NewlineVOID', role: 'Creator', socials: {twitter:'newlinevoid', discord:'697729838517190686', github:'NewlineVoid'}}
+            ],
+            description: 'imports github .json files as commands.',
+            examples: ['import NewlineVoid Line commands.json'],
+            args: [
+                {name: 'owner', type: 'essential', valueType: 'string'},
+                {name: 'repo', type: 'essential', valueType: 'string'},
+                {name: 'filePath', type: 'essential', valueType: 'string'},
+            ],
+            callback: function(owner, repo, filePath) {
+                if (!filePath.endsWith('.json')) {
+                    render('/n')
+                    render('filePath is not registered as a .JSON file', 'system', 'error');
+                    render('/n')
+                    return;
+                }
+                const url = `https://api.github.com/repos/${owner}/${repo}/contents/${filePath}`;
+                if (settings.APIKeys.Github == "none"){
+                    render('/n')
+                    render(`Please enter a github API Key using 'setKey Github <key: string>'`, 'system', 'error')
+                    render('/n')
+                    return;
+                }
+                render('/n')
+                render(`Importing commands from ${url}`, 'system')
+                render('/n')
+                console.log(commands)
+
+                let content;
+                fetch(url, {
+                headers: {
+                    Authorization: `token ${settings.APIKeys.Github}`
+                }
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        render('/n')
+                        render('network response was not ok', 'system', 'error');
+                        render('/n')
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    ImportedCommands = JSON.parse(atob(data['content']));
+                    console.log(ImportedCommands)
+                    for (let commandName in ImportedCommands) {
+                        let command = ImportedCommands[commandName]
+                        if (!commands[commandName]) { commands[commandName] = {} }
+                        commands[commandName].name = command.name
+                        commands[commandName].name = command.aliases
+                        commands[commandName].name = command.contributors
+                        commands[commandName].name = command.description
+                        commands[commandName].name = command.examples
+                        commands[commandName].name = command.args
+                        commands[commandName].name = new Function('callback', command.callback);
+                        commands[commandName].name = command.permissions
+                    }
+                    console.log(commands)
+                })
+                .catch(error => {
+                    render('/n')
+                    render(`error: ${error}`, 'system', 'error');
+                    render('/n')
+                });
+            },
+            permissions: ['admin', 'user']
+        },
+        setkey: {
+            name: 'setkey',
+            aliases: ['apiKey', 'setApi'],
+            contributors: [
+                {name: 'NewlineVOID', role: 'Creator', socials: {twitter:'newlinevoid', discord:'697729838517190686', github:'NewlineVoid'}}
+            ],
+            description: 'Sets your API Keys. This is required for commands such as Import, Loadraw and Lorem',
+            examples: ['setkey Github <key: string>'],
+            args: [
+                {name: 'platform', type: 'essential', valueType: 'string'},
+                {name: 'key', type: 'essential', valueType: 'string'}
+            ],
+            callback: function(platform, key) {
+                for (let pf in settings.APIKeys) {
+                    if (pf == platform) {
+                        settings.APIKeys[platform] = key
+                        render('/n')
+                        render(`Successfully set ${pf} api key`, 'system', 'success')
+                        render('/n')
+                        localStorage.setItem('settings', JSON.stringify(settings))
+                        return
+                    }
+                } 
+                render('/n')
+                render(`Platform '${pf}' is unrecognized`, 'system', 'error')
+                render('/n')
+                return
+            },
+            permissions: ['admin', 'user']
+        },
+        update: {
+            name: 'update',
+            aliases: ['fixSettings'],
+            contributors: [
+            {name: 'NewlineVOID', role: 'Creator', socials: {twitter:'newlinevoid', discord:'697729838517190686', github:'NewlineVoid'}}
+            ],
+            description: 'updates your settings in order to fix certain issues.',
+            examples: ['update'],
+            args: [],
+            callback: function() {
+                let oldSettings = JSON.parse(localStorage.getItem('settings'))
+                if (oldSettings && typeof oldSettings === 'object') {
+                    for (let key in settings) {
+                        if (!oldSettings[key]) { oldSettings[key] = settings[key]; console.log(`updated ${key}`) }
+                        else if (typeof settings[key] === 'object') {
+                            for (let nestedKey in settings[key]) {
+                                if (!oldSettings[key][nestedKey]) { oldSettings[key][nestedKey] = settings[key][nestedKey]; console.log(`updated ${key}.${nestedKey}`)}
+                            }
+                        }
+                    }
+                } else {
+                    oldSettings = {...settings};
+                }
+                render('/n')
+                render(`Successfully updated settings.`, 'system', 'success')
+                render('/n')
+                localStorage.setItem('settings', JSON.stringify(oldSettings));
+            },
+            permissions: ['admin', 'user']
+        },
+
+
+
+        /*template: {
+            name: '',
+            aliases: [],
+            contributors: [
+                {name: '', role: '', socials: {twitter:'', discord:'', github:'', site:''}}
+            ],
+            description: '',
+            examples: [],
+            args: [
+                {name: '', type: '', valueType: ''}
+            ],
+            callback: function() {
+
+            },
+            permissions: ['']
+        },*/
+    }
+    let notExecuting = true;
+
+    function submitConsoleInput() {
+        notExecuting = false
+        if (!consoleInp.value) { render('/n'); render('No input given.', 'system'); render('/n') }
+        render('/n');
+        render(`${consoleInp.value.trim()}`, 'user');
+        render('/n')
+        let inputted = consoleInp.value.trim();
+        consoleInp.value = '';
+
+        let parts = inputted.split(' ');
+        let command = parts[0].toLowerCase();
+        let args = parts.slice(1)
+
+        for (let cmd of Object.values(commands)) {
+            if (cmd.name === command || (cmd.aliases && cmd.aliases.includes(command))) {
+                let essentialArgs = cmd.args.filter(arg => arg.type === 'essential').length;
+                let optionalArgs = cmd.args.filter(arg => arg.type === 'optional').length;
+                if (args.length < essentialArgs) {
+                    render('/n')
+                    render(`missing arguments for ${command}. Input: ${inputted}`, 'system', 'error')
+                    render('/n')
+                    notExecuting = true;
+                    return
+                }
+                if (command === commands.echo.name) {
+                    cmd.callback(`${inputted.substring(5, inputted.length)}`)
+                    notExecuting = true;
+                    return
+                } else if (commands.echo.aliases.includes(command)) {
+                    cmd.callback(`${inputted.substring(1, inputted.length)}`)
+                    notExecuting = true;
+                    return
+                }
+                const callbackArgs = args.slice(0, essentialArgs + optionalArgs);
+                cmd.callback(...callbackArgs);
+                notExecuting = true;
+                return
+            }
+            else {
+            }
+        }
+        render('/n')
+        render(`'${command}' is not recognized as a command.`, 'system', 'error')
+        render('/n')
+        notExecuting = true;
+    }
+
+    let consoleInp = document.getElementById('consoleInput')
+    let autoscroll;
+    document.addEventListener('keydown', (key) => {
+        if (key.key === 'Enter') {
+            if (consoleInp.value && notExecuting) submitConsoleInput()
+        } else if (key.key === 'ArrowLeft' && document.activeElement !== consoleInp) {
+            document.getElementById('scrolltotop').scrollIntoView();
+            clearInterval(autoscroll)
+            autoscroll = null;
+            render('/n')
+            render('enabled autoscroll', 'system', 'success-disable')
+            render('/n')
+        } else if (key.key === 'ArrowRight' && document.activeElement !== consoleInp) {
+            if (autoscroll == null) {
+                autoscroll = setInterval(() => { document.getElementById('scrolltobottom').scrollIntoView(); }, 750)
+                render('/n')
+                render('enabled autoscroll', 'system', 'success-enable')
+                render('/n')
+            } else {
+                clearInterval(autoscroll)
+                autoscroll = null
+                render('/n')
+                render('disabled autoscroll', 'system', 'success-disable')
+                render('/n')
+            }
+        } else if (key.key != 'ArrowRight' && key.key != 'ArrowLeft' && key.key != 'Enter') {
+            consoleInp.focus();
+        }
+    });
+    
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
+        html{
+            scroll-behavior: smooth;
+        }
+        *{
+            padding:0;
+            margin:0;
+        }
+        #BodyBackground{
+            z-index: -1;
+            background: var(--background);
+            background-repeat: var(--body-background-repeat);
+            background-position:var(--body-background-pos);
+            background-size:var(--body-background-size);
+            filter: var(--body-background-filter);
+            position: fixed;
+            top:0;
+            bottom:0;
+            right:0;
+            left:0;
+        }
+        body{
+            background: #000;
+            --body-background-filter: brightness(75%);
+            --body-background-pos: center;
+            --body-background-size: auto;
+            --body-background-repeat: auto;
+            --spacing: 1.75rem;
+            --primary: #ffffff;
+            --secondary: #0000ff;
+            --focus: #ffffff;
+            --background: #000;
+            --success: #00ff00;
+            --error: #ff0000;
+            --jackpot: #ffbf00;
+            --success-disable: #bb0000;
+            --success-enable:#00aa00;
+            --user: #141414;
+            --background-input: #000;
+            
+        }
+        #container{
+            margin: var(--spacing);
+            margin-bottom: calc(var(--spacing)*2.5);
+        }
+        #container>*{
+            color:var(--primary);
+            font-family: "Source Code Pro", monospace;
+            font-optical-sizing: auto;
+            font-style: normal;
+        }
+        #consoleBackground{
+            position:fixed;
+            background: var(--background);
+            background: linear-gradient(0deg,
+                rgba(0, 0, 0, 1) 0%,
+                rgba(0, 0, 0, 0.8) 33%,
+                rgba(0, 0, 0, 0.5) 66%,
+                rgba(0, 0, 0, 0) 100%
+            );
+            bottom:0;
+            left:0;
+            right:0;
+            top: calc(var(--spacing)*20.5);
+            z-index: 97;
+        }
+        #consoleInput{
+            position:fixed;
+            background: var(--background-input);
+            resize:none;
+            color:var(--primary);
+            bottom: var(--spacing);
+            right: calc(var(--spacing)*2);
+            left:var(--spacing);
+            height:1.25rem;
+            text-indent: 0.25rem;
+            text-align: center;
+            border: 1px solid var(--primary);
+            border-radius:5px;
+            z-index: 99;
+            transition: 150ms ease-in;
+        }
+        #consoleInput:focus{
+            border:1px solid var(--primary);
+            color: var(--focus);
+        }
+        #enterConsole{
+            position:fixed;
+            background: transparent;
+            resize:none;
+            color:var(--primary);
+            bottom: var(--spacing);
+            right: var(--spacing);
+            left: var(--spacing);
+            height:1.35rem;
+            text-indent: 0.25rem;
+            text-align: right;
+            border: none;
+            transition: 150ms ease-in;
+            z-index: 98;    
+        }
+        #consoleInput~#enterConsole{
+            color: var(--primary) !important;
+        }
+        #consoleInput:focus~#enterConsole{
+            color: var(--focus) !important;
+        }
+        .error{
+            color: var(--error) !important;
+        }
+        .success{
+            color: var(--success) !important;
+        }
+        .success-enable{
+            color: var(--success-enable) !important;
+            text-shadow: 0 0 2px var(--success-enable);
+        }
+        .success-disable{
+            color: var(--success-disable) !important;
+            text-shadow: 0 0 2px var(--success-disable);
+        }
+        .jackpot{
+            color: var(--jackpot) !important;
+            text-shadow: 0 0 2px var(--jackpot);
+        }
+        .user{
+            color: var(--user) !important;
+            text-shadow: 0 0 2px var(--user);
+        }
+
+        ::-webkit-scrollbar{
+            width:0.25rem;
+        }
+    </style>
+</html>
