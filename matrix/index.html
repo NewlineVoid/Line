@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matrix</title>
+    <title>Matrix Interface</title>
+    <meta content="Matrix Interface" property="og:title">
+    <meta content="Console if it was on a budget." property="og:description">
+    <meta content="https://newlinevoid.github.io/Line/matrix/" property="og:url">
+    <meta content="#00ff00" data-react-helmet="true" name="theme-color">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <style>
         #fade{
@@ -99,7 +103,7 @@
         `) })
     sleep(850).then(()=> { render(`Type 'help' for assistance.
     `) })
-    sleep(900).then(()=> { render(`Note: This is a test version. Bugs and glitches are bound to occur.
+    sleep(950).then(()=> { render(`Note: This is a test version. Bugs and glitches are bound to occur.
     `, 'n', 'success-disable') })
         sleep(150).then(fade())
         for (let variable in settings.theme) {
