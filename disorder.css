@@ -3,7 +3,7 @@
 
 /*
 To Do:
-    Better spotify player,
+    Better spotify player, <
     Better sidebars,
     Hover effects,
     Better settings UI,
@@ -11,3 +11,28 @@ To Do:
     Chat bubbles
     Loading screen
 */
+
+:root{
+  --disorder-message-present-spacing: 22.5px;
+}
+
+/* For newMessagesBar and jumpToPresentBar */
+[class^="newMessagesBar_"],
+[class^="jumpToPresentBar_"] {
+    transition: transform 0.25s ease-in-out;
+    height:27.5px;
+}
+
+[class^="newMessagesBar_"]:hover,
+[class^="jumpToPresentBar_"]:hover {
+    transform: translateY(0);
+}
+
+[class^="newMessagesBar_"] {
+    transform: translateY(calc(var(--disorder-message-present-spacing)*-1));
+}
+
+[class^="jumpToPresentBar_"] {
+    background: #5662e9;
+    transform: translateY(var(--disorder-message-present-spacing));
+}
