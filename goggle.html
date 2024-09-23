@@ -37,7 +37,7 @@ style="fill:#000000;">
     <div class="urlmode">
     <input type="text" id="medium" name="medium" placeholder="method"></input><p class="tempdis" id="tempdis">mediums include: "url", "search", "x", "twitter", "twitter.user", "roblox.user", "roblox", "roblox.group", "roblox.catalog", "twitch", "twitch.user", "youtube", "youtube.user", "reddit", "reddit.community", "reddit.user"</p>
     </div>
-      <div><input type="submit" value="submit" class="submit" onclick="GoogleThis()" id="submit"></div></div>
+      <div><input type="submit" value="Search" class="submit" onclick="GoogleThis()" id="submit"></div></div>
 
 </div>
 </body>
@@ -152,7 +152,8 @@ a {
 }
   
 console.log('"url", "search", "x", "twitter", "twitter.user", "roblox.user", "roblox", "roblox.group", "roblox.catalog", "twitch", "twitch.user", "youtube", "youtube.user", "reddit", "reddit.community", "reddit.user"')
-
+console.log('Changes: Added Skip checkbox(true by default), allows you to essentially skip the 9 second sequence after pressing search. Changed "Submit" to search. Added autofocus attribute to the input.')
+	  
 function goToUrl(url) {
     let isSkipped = document.getElementById("Skipping").checked;
     if (!isSkipped) {
