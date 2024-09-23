@@ -7,7 +7,7 @@
   <title>goggle</title>
   <meta content="Goggle" property="og:title">
   <meta content="Search beyond sight with Goggle, unlock new perspectives with each query" property="og:description">
-  <meta content="https://newlinevoids-goggle.000webhostapp.com/" property="og:url">
+  <meta content="https://newlinevoid.github.io/Line/goggle.html" property="og:url">
   <meta content="#ffffff" data-react-helmet="true" name="theme-color">
   <link href="style.css" rel="stylesheet" type="text/css">  
 <body>
@@ -32,7 +32,7 @@ style="fill:#000000;">
 	</ul>
   <div id="void"><h1>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</h1></div>
 
-	<div id="gogle"><h1 id="header">goggle</h1><div><input type="text" id="search" name="search" autocomplete="off" placeholder="search"></div>
+	<div id="gogle"><h1 id="header">goggle</h1><div><input type="text" id="search" name="search" autocomplete="off" placeholder="search" autofocus><br><input type="checkbox" name="isSkipping" id="Skipping" checked></div>
     
     <div class="urlmode">
     <input type="text" id="medium" name="medium" placeholder="method"></input><p class="tempdis" id="tempdis">mediums include: "url", "search", "x", "twitter", "twitter.user", "roblox.user", "roblox", "roblox.group", "roblox.catalog", "twitch", "twitch.user", "youtube", "youtube.user", "reddit", "reddit.community", "reddit.user"</p>
@@ -154,35 +154,41 @@ a {
 console.log('"url", "search", "x", "twitter", "twitter.user", "roblox.user", "roblox", "roblox.group", "roblox.catalog", "twitch", "twitch.user", "youtube", "youtube.user", "reddit", "reddit.community", "reddit.user"')
 
 function goToUrl(url) {
-  sleep(0).then(() => { document.getElementById('goodgamemail').style.opacity = "0" });
-  document.getElementById('tempdis').style.transitionDuration = "0.75s ease-in";
-  sleep(50).then(() => { document.getElementById('tempdis').style.opacity = "0" });
-  sleep(100).then(() => { document.getElementById('imagaines').style.opacity = "0" });
-  sleep(150).then(() => { document.getElementById('submit').style.opacity = "0" });
-  sleep(200).then(() => { document.getElementById('more').style.opacity = "0" });
+    let isSkipped = document.getElementById("Skipping").checked;
+    if (!isSkipped) {
+        sleep(0).then(() => { document.getElementById('goodgamemail').style.opacity = "0" });
+        document.getElementById('tempdis').style.transitionDuration = "0.75s ease-in";
+        sleep(50).then(() => { document.getElementById('tempdis').style.opacity = "0" });
+        sleep(100).then(() => { document.getElementById('imagaines').style.opacity = "0" });
+        sleep(150).then(() => { document.getElementById('submit').style.opacity = "0" });
+        sleep(200).then(() => { document.getElementById('more').style.opacity = "0" });
 
-  sleep(500).then(() => { document.getElementById('search').style.opacity = "0" });
-  sleep(650).then(() => { document.getElementById('medium').style.opacity = "0" });
-  sleep(650).then(() => { document.body.style.background = "black" });
+        sleep(500).then(() => { document.getElementById('search').style.opacity = "0" });
+        sleep(650).then(() => { document.getElementById('medium').style.opacity = "0" });
+        sleep(650).then(() => { document.body.style.background = "black" });
 
-  sleep(700).then(() => { document.getElementById('header').style.opacity = "0" });
-  sleep(1500).then(() => { document.body.style.background = "white" });
-  sleep(1750).then(() => { document.getElementById('header').style.opacity = "1" });
-  sleep(1750).then(() => { document.getElementById('header').style.color = "Black" });
-  sleep(1550).then(() => { document.getElementById('header').style.fontSize = "10rem" });
-  sleep(1600).then(() => { document.getElementById('tempdis').style.opacity = "1" });
-  sleep(1000).then(() => { document.getElementById('tempdis').style.color = "Black" });
-  sleep(1450).then(() => { document.getElementById('tempdis').innerHTML = `you are being redirected to: <br><b><i>${url}</i></b>` });
-  sleep(6750).then(() => { document.getElementById('tempdis').innerHTML = `redirecting in 3` });
-  sleep(7750).then(() => { document.getElementById('tempdis').innerHTML = `redirecting in 2` });
-  sleep(8750).then(() => { document.getElementById('tempdis').innerHTML = `redirecting in 1` });
-  sleep(8750).then(() => { document.getElementById('tempdis').innerHTML = `redirecting` });
-  sleep(8800).then(() => { document.getElementById('tempdis').innerHTML = `redirecting.` });
-  sleep(8850).then(() => { document.getElementById('tempdis').innerHTML = `redirecting..` });
-  sleep(8900).then(() => { document.getElementById('tempdis').innerHTML = `redirecting...` });
-  sleep(9050).then(() => { document.getElementById('tempdis').innerHTML = `redirected` });
+        sleep(700).then(() => { document.getElementById('header').style.opacity = "0" });
+        sleep(1500).then(() => { document.body.style.background = "white" });
+        sleep(1750).then(() => { document.getElementById('header').style.opacity = "1" });
+        sleep(1750).then(() => { document.getElementById('header').style.color = "Black" });
+        sleep(1550).then(() => { document.getElementById('header').style.fontSize = "10rem" });
+        sleep(1600).then(() => { document.getElementById('tempdis').style.opacity = "1" });
+        sleep(1000).then(() => { document.getElementById('tempdis').style.color = "Black" });
+        sleep(1450).then(() => { document.getElementById('tempdis').innerHTML = `you are being redirected to: <br><b><i>${url}</i></b>` });
+        sleep(6750).then(() => { document.getElementById('tempdis').innerHTML = `redirecting in 3` });
+        sleep(7750).then(() => { document.getElementById('tempdis').innerHTML = `redirecting in 2` });
+        sleep(8750).then(() => { document.getElementById('tempdis').innerHTML = `redirecting in 1` });
+        sleep(8750).then(() => { document.getElementById('tempdis').innerHTML = `redirecting` });
+        sleep(8800).then(() => { document.getElementById('tempdis').innerHTML = `redirecting.` });
+        sleep(8850).then(() => { document.getElementById('tempdis').innerHTML = `redirecting..` });
+        sleep(8900).then(() => { document.getElementById('tempdis').innerHTML = `redirecting...` });
+        sleep(9050).then(() => { document.getElementById('tempdis').innerHTML = `redirected` });
 
-  sleep(9000).then(() => { window.location.assign(url); });
+        sleep(9000).then(() => { window.location.assign(url); });
+    } else {
+        window.location.assign(url);
+    }
+
 }
 
 function GoogleThis() {
