@@ -150,14 +150,12 @@
 
     
     sleep(1500).then(() => {
-        if (passiveBinary) {
         setInterval(function() { randomRender('0', chance) }, 1);
         setInterval(function() { randomRender('1', chance) }, 1);
         setInterval(function() { randomRender(' ', 97) }, 10);
         setInterval(function() { randomRender(`
             lorem ipsum dolor sit amet
         `, 99.999) }, 10);
-        };
     })
     
     
